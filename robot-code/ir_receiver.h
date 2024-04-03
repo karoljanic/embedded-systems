@@ -1,0 +1,24 @@
+#ifndef IR_RECEIVER_H
+#define IR_RECEIVER_H
+
+#define IR_RECEIVER_0_CHAR           0xE619FF00
+#define IR_RECEIVER_1_CHAR           0xBA45FF00
+#define IR_RECEIVER_2_CHAR           0xB946FF00
+#define IR_RECEIVER_3_CHAR           0xB847FF00
+#define IR_RECEIVER_4_CHAR           0xBB44FF00
+#define IR_RECEIVER_5_CHAR           0xBF40FF00
+#define IR_RECEIVER_6_CHAR           0xBC43FF00
+#define IR_RECEIVER_7_CHAR           0xF807FF00
+#define IR_RECEIVER_8_CHAR           0xEA15FF00
+#define IR_RECEIVER_9_CHAR           0xF609FF00
+#define IR_RECEIVER_STAR_CHAR        0xE916FF00
+#define IR_RECEIVER_HASH_CHAR        0xF20DFF00
+#define IR_RECEIVER_OK_CHAR          0xE31CFF00
+#define IR_RECEIVER_LEFT_CHAR        0xF708FF00
+#define IR_RECEIVER_RIGHT_CHAR       0xA55AFF00
+#define IR_RECEIVER_FORWARD_CHAR     0xE718FF00
+#define IR_RECEIVER_BACKWARD_CHAR    0xAD52FF00
+
+#include <IRremote.h>
+
+#endif // IR_RECEIVER_H
