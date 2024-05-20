@@ -19,6 +19,7 @@
 static LiquidCrystal_I2C lcd_monitor(LCD_ADDRESS, LCD_COLS, LCD_ROWS);
 
 void lcd_monitor_initialize();
+void lcd_monitor_clear();
 void lcd_monitor_display_int(uint8_t row, uint8_t col, int value);
 void lcd_monitor_display_float(uint8_t row, uint8_t col, float value);
 void lcd_monitor_display_special_character(uint8_t row, uint8_t col, uint8_t animation_index, uint8_t frame_index);

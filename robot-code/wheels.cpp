@@ -8,11 +8,14 @@ volatile uint32_t right_motor_ticks_counter;
 int wheels_left_direction;
 int wheels_right_direction;
 
+int wheels_left_ticks_to_go = 0;
+int wheels_right_ticks_to_go = 0;
+
 float wheels_left_speed = 0.0;
 float wheels_right_speed = 0.0;
 
-int32_t wheels_left_ticks_to_go = 0;
-int32_t wheels_right_ticks_to_go = 0;
+int32_t wheels_left_travelled_ticks = 0;
+int32_t wheels_right_travelled_ticks = 0;
 
 uint32_t last_update_time;
 uint8_t left_drift;
@@ -47,6 +50,8 @@ void wheels_initialize()
   right_motor_ticks_counter = 0;
   wheels_left_ticks_to_go = 0;
   wheels_right_ticks_to_go = 0;
+  wheels_left_travelled_ticks = 0;
+  wheels_left_travelled_ticks = 0;
 
   PCICR = 0x02;
   PCMSK1 = 0x03;
@@ -130,8 +135,8 @@ void wheels_go_distance(int left_cm, int right_cm)
 
 void wheels_go_angle(int deg)
 {
-  wheels_left_ticks_to_go += deg * TICKS_PER_CM;
-  wheels_right_ticks_to_go -= deg * TICKS_PER_CM;
+  wheels_left_ticks_to_go += deg * TICKS_PER_DEG;
+  wheels_right_ticks_to_go -= deg * TICKS_PER_DEG;
 }
 
 void wheels_update()
@@ -151,19 +156,23 @@ void wheels_update()
   if(wheels_left_direction == WHEELS_FORWARD)
   {
     wheels_left_ticks_to_go -= left_ticks;
+    wheels_left_travelled_ticks += left_ticks;
   }
   else
   {
     wheels_left_ticks_to_go += left_ticks;
+    wheels_left_travelled_ticks -= left_ticks;
   }
 
   if(wheels_right_direction == WHEELS_FORWARD)
   {
     wheels_right_ticks_to_go -= right_ticks;
+    wheels_right_travelled_ticks += right_ticks;
   }
   else
   {
     wheels_right_ticks_to_go += right_ticks;
+    wheels_right_travelled_ticks -= right_ticks;
   }
 
 
@@ -178,23 +187,42 @@ void wheels_update()
     left_drift += DRIFT_COMPENSATION;
   }
 
-  int new_left_speed = wheels_left_ticks_to_go * TICK_SPEED_COEFF;
-  int new_right_speed = wheels_right_ticks_to_go * TICK_SPEED_COEFF;
+  // int new_left_speed = wheels_left_ticks_to_go * TICK_SPEED_COEFF;
+  // int new_right_speed = wheels_right_ticks_to_go * TICK_SPEED_COEFF;
 
-  if(new_left_speed > 0) {
-    wheels_left_forward(new_left_speed + left_drift);
-  }
-  else
-  {
-    wheels_left_backward(-new_left_speed + left_drift);
-  }
+  // wheels_left_speed = new_left_speed;
+  // wheels_right_speed = new_right_speed;
 
-  if(new_right_speed > 0)
-  {
-    wheels_right_forward(new_right_speed + right_drift);
-  }
-  else
-  {
-    wheels_right_backward(-new_right_speed + right_drift);
-  }
+  // int new_left_speed;
+  // if(wheels_left_ticks_to_go > 15) {
+  //   new_left_speed = 150;
+  // }
+  // else {
+  //   new_left_speed = 0;
+  // }
+
+  // int new_right_speed;
+  // if(wheels_right_ticks_to_go > 15) {
+  //   new_right_speed = 150;
+  // }
+  // else {
+  //   new_right_speed = 0;
+  // }
+
+  // if(new_left_speed > 0) {
+  //   wheels_left_forward(new_left_speed + left_drift);
+  // }
+  // else
+  // {
+  //   wheels_left_backward(-new_left_speed + left_drift);
+  // }
+
+  // if(new_right_speed > 0)
+  // {
+  //   wheels_right_forward(new_right_speed + right_drift);
+  // }
+  // else
+  // {
+  //   wheels_right_backward(-new_right_speed + right_drift);
+  // }
 }

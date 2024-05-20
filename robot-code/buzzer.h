@@ -11,4 +11,6 @@ void buzzer_initialize();
 void buzzer_play(uint32_t delay_period);
 void buzzer_stop();
 
+// need 9,10 pins
+
 #endif // LCD_BUZZER_H

@@ -1,6 +1,8 @@
 #ifndef IR_RECEIVER_H
 #define IR_RECEIVER_H
 
+#define RECEIVER_PIN 11
+
 #define IR_RECEIVER_0_CHAR           0xE619FF00
 #define IR_RECEIVER_1_CHAR           0xBA45FF00
 #define IR_RECEIVER_2_CHAR           0xB946FF00
@@ -20,5 +22,7 @@
 #define IR_RECEIVER_BACKWARD_CHAR    0xAD52FF00
 
 #include <IRremote.h>
+
+// needs 2,3,11 pin
 
 #endif // IR_RECEIVER_H

@@ -14,24 +14,24 @@
 #define MOTOR2_SENSOR       15
 
 #define WHEELS_MAX_VALUE    255
-#define WHEELS_MIN_VALUE    70
-#define WHEELS_ZERO_VALUE   10
+#define WHEELS_MIN_VALUE    80
+#define WHEELS_ZERO_VALUE   20
 
 #define TICKS_PER_CM        2
-#define TICKS_PER_DEG       5
+#define TICKS_PER_DEG       1
 
 #define WHEELS_FORWARD      1
 #define WHEELS_BACKWARD     -1
 
 #define MIN_DRIFT_TRESHOLD  10
 #define DRIFT_COMPENSATION  0
-#define TICK_SPEED_COEFF    5
+#define TICK_SPEED_COEFF    3
 
 extern float wheels_left_speed;
 extern float wheels_right_speed;
 
-extern int32_t wheels_left_ticks_to_go;
-extern int32_t wheels_right_ticks_to_go;
+extern int32_t wheels_left_travelled_ticks;
+extern int32_t wheels_right_travelled_ticks;
 
 void wheels_initialize();
 

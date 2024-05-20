@@ -137,6 +137,11 @@ void lcd_monitor_initialize()
   lcd_monitor.backlight();
 }
 
+void lcd_monitor_clear()
+{
+  lcd_monitor.clear();
+}
+
 void lcd_monitor_display_int(uint8_t row, uint8_t col, int value)
 {
   lcd_monitor.setCursor(col, row);
